@@ -14,7 +14,7 @@ pipeline{
          steps{
          	script{
                kubeconfig(credentialsId:'minikubeconfig',serverUrl:'http://192.168.49.1:8443') {
-                  sh 'kubectl apply-f mysql-storage.yaml'   
+                  sh 'kubectl apply -f ./mysql-storage.yaml'   
                }
              } 
                              
@@ -24,7 +24,7 @@ pipeline{
       steps{
         script{
                kubeconfig(credentialsId:'minikubeconfig',serverUrl:'http://192.168.49.1:8443') {
-                  sh 'kubectl apply -f mysql-deployment.yaml'   
+                  sh 'kubectl apply -f ./mysql-deployment.yaml'   
                }
              }        
       }                   

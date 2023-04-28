@@ -1,0 +1,27 @@
+version: app/v1
+kind: Statefulset
+metadata:
+ name: mongo-db
+ matchLabels:
+  app: mongo
+spec:
+ replica: 3
+ selectors: 
+  app: mongo
+ containers:
+  - name: mongo
+    image: mongo:latest
+    env:
+     - name: MONGO_DB_USERNAME
+       value: mongo
+     - name : MONGO_DB_PASSWORD
+       value: Seshagiri#21
+    ports:
+     containerPort: 12791
+     name: mongo
+    volumeMount:
+     - name: mongo-persistent-storage
+       mountPath: /data/db
+ volumes:
+   - name: mongo-persistent-storage
+     emptyDir: {}    

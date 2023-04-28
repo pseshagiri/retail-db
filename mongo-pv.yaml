@@ -1,0 +1,30 @@
+version: app/v1
+kind: PersistentVolume
+metadata: 
+ name: mongo-pv
+ matchLabels:
+  name: mongo-pv
+spec:
+ storageClassName: Manual
+ capacity:
+  storage: 1G
+ accessMode:
+  - ReadWriteOnce
+ hostPath:
+  path: "/data/db"
+  
+---
+version: app/v1
+kind: PersistentVolumeClaim
+metadata: 
+ name: mongo-pv-cm
+ matchLabels:
+  name: mongo-pv-cm
+spec:
+ storageClassName: Manual
+ accessMode:
+  storage: 1G
+ resources:
+  requests:
+    storage: 1G	
+ 

@@ -11,25 +11,29 @@ spec:
  strategy:
   type: Recreate
  template:
-  container: 
-   - name: mysql
-     image: mysql:5.6
-     env:
-      - name: MYSQL_ROOT_PASSWORD
-        valueFrom:
-         secretKeyRef:
-          name: mysql-secret
-          key: password
-     ports:
-      - containerPort: 3306
-        name: mysql
-     volumeMount:
-      - name: mysql-persistent-storage
-        mountPath: /var/lib/mysql
-     volumes:
-      - name: mysql-persistent-storage
-        persistentVolumeClaim:
-         claimName: mysql-pv-claim
+  metadata:
+   labels:
+    app: mysql-db
+  spec:  
+   container: 
+    - name: mysql
+      image: mysql:5.6
+      env:
+       - name: MYSQL_ROOT_PASSWORD
+         valueFrom:
+          secretKeyRef:
+           name: mysql-secret
+           key: password
+      ports:
+       - containerPort: 3306
+         name: mysql
+      volumeMount:
+       - name: mysql-persistent-storage
+         mountPath: /var/lib/mysql
+      volumes:
+       - name: mysql-persistent-storage
+         persistentVolumeClaim:
+          claimName: mysql-pv-claim
 
 ---
 apiVersion: v1

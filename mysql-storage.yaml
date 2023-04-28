@@ -6,7 +6,7 @@ metadata:
   type: local
   app: Database
 spec:
- storageClassName: Manual
+ storageClassName: manual
  capacity: 
   storage: 1G
  accessModes:
@@ -20,7 +20,7 @@ kind: PersistentVolumeClaim
 metadata:
  name: mysql-pv-claim
 spec:
- storageClassName: Manual
+ storageClassName: manual
  accessModes:
   - ReadWriteOnce
  resources: 

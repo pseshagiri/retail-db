@@ -28,7 +28,7 @@ spec:
           mountPath: /mnt/data
       Volumes:
       - name: mysql-db-mnt
-        persistentVolumeClaima:
+        persistentVolumeClaim:
          claimName: mysql-pvc
          
 
